@@ -1,8 +1,10 @@
 import { useNavigation } from '@react-navigation/native'
 import React from 'react'
 import { ActivityIndicator, Dimensions, Text, View } from 'react-native'
+import { FlatList, ScrollView } from 'react-native-gesture-handler';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Carousel from 'react-native-snap-carousel';
+import { HorizontalSlider } from '../components/HorizontalSlider';
 
 import { MoviePoster } from '../components/MoviePoster';
 import { useMovies } from '../hooks/useMovies';
@@ -22,8 +24,10 @@ export const HomeScreen = () => {
     }
 
     return (
+        <ScrollView>
         <View style={{marginTop: top + 20}}>
-            {/* <MoviePoster movie={MoviesNow[1]} /> */}
+
+            {/* Carousel /> */}
 
             <View
                 style={{height:440}}>
@@ -32,9 +36,17 @@ export const HomeScreen = () => {
                     renderItem={({item} : any) => <MoviePoster movie={item} />}
                     sliderWidth={windowsWidth}
                     itemWidth={300}
+                    inactiveSlideOpacity={0.9}
                 />
             </View>
-            
+
+             {/* Popular Movies /> */}
+
+            <HorizontalSlider title='Popular Movies' movies ={MoviesNow} />
+
+            <HorizontalSlider  movies ={MoviesNow} />
+
         </View>
+        </ScrollView>
     )
 }
